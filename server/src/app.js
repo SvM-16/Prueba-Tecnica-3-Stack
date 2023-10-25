@@ -1,7 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
-
-import empleadosRoutes from './routes/empleados.routes.js'
+import empleadosRoute from './routes/empleados.routes.js'
 
 const app = express();
 
@@ -9,6 +8,7 @@ app.use(express.json())
 
 app.use(morgan('dev'))
 
-app.use("api", empleadosRoutes);
+app.use('/api', empleadosRoute)
+
 
 export default app

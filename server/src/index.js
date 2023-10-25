@@ -1,6 +1,3 @@
-import app from "./app.js"
-import { conectarDB } from "./db.js"
+import app from './app.js';
 
-conectarDB();
-
-app.listen(5000, () => console.log(`iniciando server`));
+app.listen(5000, ()=>console.log("Conexion al servidor"));
