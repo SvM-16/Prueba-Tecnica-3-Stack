@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import { obtenerRoles } from '../controllers/rolesControlles';
+import { getRoles } from '../controllers/rolesControlles.js';
 
 const router = Router();
 
-router.gey('/areas', obtenerRoles)
+router.get('/roles', getRoles)
 
 export default router;

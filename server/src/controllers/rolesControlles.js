@@ -1,6 +1,6 @@
 import db from '../config/db.js'
 
-export function obtenerRoles (req, res){
+export function getRoles (req, res){
     const sql = 'SELECT * FROM roles';
     
     db.query(sql, (error, results) => {

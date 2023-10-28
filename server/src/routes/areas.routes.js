@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { obtenerAreas } from "../controllers/areasControlles";
+import { getAreas } from "../controllers/areasControlles.js";
 
 const router = Router();
 
-router.get('/areas', obtenerAreas)
+router.get('/areas', getAreas)
 
-export default router
+export default router;

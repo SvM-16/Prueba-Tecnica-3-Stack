@@ -1,6 +1,6 @@
 import db from '../config/db.js'
 
-export function obtenerAreas (req, res){
+export function getAreas (req, res){
     const sql = 'SELECT * FROM areas';
     
     db.query(sql, (error, results) => {
