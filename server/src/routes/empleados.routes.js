@@ -5,7 +5,7 @@ import { crearEmpleado } from "../schema/empleados.schema.js";
 
 const router = Router();
 
-router.get('/empleados',getEmpleados);
+router.get('/empleado',getEmpleados);
 router.get('/empleados/:id',getEmpleadoId);
 router.post('/empleados',validateSchema(crearEmpleado), createEmpleado);
 router.put('/empleados/:id',updateEmpleado);
