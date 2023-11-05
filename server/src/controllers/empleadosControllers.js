@@ -8,10 +8,10 @@ export function createEmpleado (req, res){
 
         db.query(sql, [empleadoData.nombre, empleadoData.email, empleadoData.sexo, empleadoData.area_id, empleadoData.boletin, empleadoData.descripcion], (error)=>{
             if(error){
-                console.error('Erroe el crear empleado: ', error);
+                console.error('Error el crear empleado: ', error);
                 return res.status(500).json({ error: 'Error al crear el empleado' });
             }
-            res.status(201).json({ message: 'Empleado creado' });
+            res.status(201).json(empleadoData);
         })
 }
 
