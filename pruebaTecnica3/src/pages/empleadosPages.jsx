@@ -6,18 +6,23 @@ import { useForm } from 'react-hook-form';
 import '../pages/empleados.css';
 
 const Empleados = () => {
-  const { empleados, getEmpleados, createEmpleado } = useEmpleados();
+  const { empleados, getEmpleados, createEmpleados } = useEmpleados();
   // const { createEmpleado } = React.useContext(EmpleadoContext)
   const { roles, getRoles } = useRoles();
   const { areas, getAreas } = useAreas();
-  const [rolesSeleccionados, setRolesSeleccionados] = useState([]); // Corrección en esta línea
+  const [rolesSeleccionados, setRolesSeleccionados] = useState([]);
   const { register, handleSubmit } = useForm();
+  const [quiereBoletin, setQuiereBoletin] = useState(false);
 
   useEffect(() => {
-  //  getEmpleados();
+   getEmpleados();
     getAreas();
     getRoles();
   }, []);
+
+  const handleQuiereBoletinChange = (event) => {
+    setQuiereBoletin(event.target.checked);
+  };
 
   const handleRolchange = (rolesId) => {
     if (rolesSeleccionados && rolesSeleccionados.includes(rolesId)) {
@@ -27,17 +32,16 @@ const Empleados = () => {
     }
   };
 
-  const onSubmit = handleSubmit( async (data)=> {
+  const onSubmit = handleSubmit((data)=> {
     const empleadoData = {
       nombre: data.nombre,
       email: data.email,
       sexo: data.sexo,
       area_id: data.area_id,
-      boletin: data.boletin,
       descripcion: data.descripcion,
-      roles: rolesSeleccionados,
+      boletin: quiereBoletin ? 1 : 0,
     };
-    createEmpleado(empleadoData);
+    createEmpleados(empleadoData);
   });
 
   return (
@@ -77,13 +81,13 @@ const Empleados = () => {
               <div className='flex flex-col'>
                 <textarea name="" id="" cols="" rows="" placeholder='Descripción de la experiencia del empleado' {...register("descripcion")}></textarea>
                 <div className='flex'>
-                  <input type="checkbox" id='boletin' {...register("boletin")} />
+                  <input type="checkbox" id='boletin' onChange={handleQuiereBoletinChange} />
                   <label htmlFor="boletin">Desea recibir el boletin informativo</label>
                 </div>
               </div>
           </div>
           <div className='roles flex'>
-                <label htmlFor="roles">Roles * </label>
+                <label htmlFor="roles">Roles *  </label>
                 <div className='flex flex-col'>
                 {roles.map((role)=>(
                   <div key={role.id} >

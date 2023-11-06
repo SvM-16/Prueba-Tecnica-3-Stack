@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 
-import { getEmpleadosRequest, createEmpleadoRequest, updateEmpleadoRequest, deleteEmpleadoRequest } from "../api/empleados.js"
+import { getEmpleadosRequest, createEmpleado, updateEmpleadoRequest, deleteEmpleadoRequest } from "../api/empleados.js"
 
 export const EmpleadoContext = createContext();
 
@@ -26,10 +26,10 @@ export function EmpleadosProvider({ children }){
         }
     }
 
-    const createEmpleado = async (nuevoEmpleado) => {
+    const createEmpleados = async (nuevoEmpleado) => {
         
         try {
-            const res = await createEmpleadoRequest(nuevoEmpleado); // Debes pasar nuevoEmpleado aquí
+            const res = await createEmpleado(nuevoEmpleado);
             setEmpleados([...empleados, res.data]);
             console.log(res);
         } catch (error) {
@@ -63,7 +63,7 @@ export function EmpleadosProvider({ children }){
         <EmpleadoContext.Provider value={{
             empleados,
             getEmpleados,
-            createEmpleado,
+            createEmpleados,
             updateEmpleado,
             deleteEmpleado
         }}>
